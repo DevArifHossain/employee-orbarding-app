@@ -15,7 +15,7 @@ app.post("/users/apps", async (req, res) => {
   const { access, userId } = req.body;
   const app = { id, access };
   apps[userId] = app;
-  await axios.post("http://localhost:5005/events", {
+  await axios.post("http://localhost:8888/.netlify/functions/event-bus", {
     type: "AppAcessCreated",
     data: { userId, access },
   });
@@ -29,7 +29,7 @@ app.patch("/users/apps", async (req, res) => {
     console.log(apps[userId]);
     apps[userId].access = access;
 
-    await axios.post("http://localhost:5005/events", {
+    await axios.post("http://localhost:8888/.netlify/functions/event-bus", {
       type: "AppAcessUpdated",
       data: { userId, access },
     });

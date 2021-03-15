@@ -17,7 +17,7 @@ app.post("/users", async (req, res) => {
     const user = { id, name, email, avatar };
     users[id] = user;
 
-    await axios.post("http://localhost:5005/events", {
+    await axios.post("http://localhost:8888/.netlify/functions/event-bus", {
       type: "UserCreated",
       data: users[id],
     });
