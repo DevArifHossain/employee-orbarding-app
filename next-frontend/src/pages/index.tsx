@@ -45,10 +45,13 @@ export default function Home({ data }) {
     fetchStuff();
   }, []);
 
-  const changeAppAcess = async ({access, userId}) => {
-    console.log(access, userId)
+  const changeAppAcess = async ({ access, userId, trelloMemberId }) => {
     try {
-      const {data} = await axios.patch(`http://localhost:5000/users/apps`, { access, userId });
+      const { data } = await axios.patch(`http://localhost:5000/users/apps`, {
+        access,
+        userId,
+        trelloMemberId,
+      });
     } catch (error) {}
   };
 
@@ -65,6 +68,7 @@ export default function Home({ data }) {
               <Th>Avatar</Th>
               <Th>Name</Th>
               <Th>Email</Th>
+              <Th>Trello Id</Th>
               <Th>Active</Th>
             </Tr>
           </Thead>
@@ -80,6 +84,7 @@ export default function Home({ data }) {
                   </Td>
                   <Td>{data[key].name}</Td>
                   <Td>{data[key].email}</Td>
+                  <Td>{data[key].trelloMemberId}</Td>
                   <Td>
                     <Switch
                       colorScheme="purple"
@@ -87,6 +92,7 @@ export default function Home({ data }) {
                         changeAppAcess({
                           access: e.target.checked,
                           userId: key,
+                          trelloMemberId: data[key].trelloMemberId,
                         })
                       }
                       defaultChecked={data[key].access}

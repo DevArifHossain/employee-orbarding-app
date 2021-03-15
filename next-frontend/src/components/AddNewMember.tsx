@@ -40,6 +40,7 @@ export default () => {
         onClose();
         axios.post("http://localhost:5000/users/apps", {
           userId: result.data.id,
+          trelloMemberId: data.trelloMemberId,
           access: trelloAccess,
         });
         toast({
@@ -84,6 +85,14 @@ export default () => {
                   name="avatar"
                   ref={register}
                   placeholder="https://images.unsplash.com/photo-1612831455740-a2f6212eeeb2?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel>Member's Trello Id</FormLabel>
+                <Input
+                  name="trelloMemberId"
+                  ref={register}
+                  placeholder="devarif"
                 />
               </FormControl>
               <HStack justify="space-between" mt={6}>
