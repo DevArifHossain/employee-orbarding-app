@@ -16,8 +16,9 @@ app.post("/events", (req, res) => {
     users_access[id] = { userId: id, name, email, avatar };
   }
   if (type === "AppAcessCreated") {
-    const { userId, access } = data;
+    const { userId, access, trelloMemberId } = data;
     users_access[userId].access = access;
+    users_access[userId].trelloMemberId = trelloMemberId;
   }
   if (type === "AppAcessUpdated") {
     const { userId, access } = data;
